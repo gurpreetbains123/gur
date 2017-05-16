@@ -1,0 +1,28 @@
+<VirtualHost *:80>
+        ServerAdmin webmaster@site1.example.com
+        ServerName site1.example.com
+        DocumentRoot /var/www/site1.example.com/httpdocs
+        Documentroot /var/www/site1.example.com 
+        <Directory />
+                Options FollowSymLinks
+                AllowOverride None
+        </Directory>
+        <Directory /var/www/>
+                Options Indexes FollowSymLinks MultiViews
+                AllowOverride None
+                Order allow,deny
+                allow from all
+        </Directory>
+
+        ScriptAlias /cgi-bin/ /usr/lib/cgi-bin/
+        <Directory /usr/lib/cgi-bin>
+                AllowOverride None
+                Options +ExecCGI -MultiViews +SymLinksIfOwnerMatch
+                Order allow,deny
+                Allow from all
+        </Directory>
+
+        ErrorLog /error.log
+        LogLevel warn
+        CustomLog /access.log combined
+</VirtualHost>
